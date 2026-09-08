@@ -10,6 +10,12 @@ export const FONT_MAP: Record<FontOption, string> = {
   shadows: "ShadowsIntoLight_400Regular",
 };
 
+export const FONT_MAP_BOLD: Record<FontOption, string> = {
+  indie: "IndieFlower_400Regular", // no bold variant available
+  caveat: "Caveat_700Bold",
+  shadows: "ShadowsIntoLight_400Regular", // no bold variant available
+};
+
 interface FontStore {
   selectedFont: FontOption;
   setSelectedFont: (font: FontOption) => void;

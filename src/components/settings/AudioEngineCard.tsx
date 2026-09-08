@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet } from "react-native";
 import { AppText } from "../ui/AppText";
 import { SettingsCard } from "./SettingsCard";
 import { Button } from "../shared/Button";
 import { Toggle } from "../shared/Toggle";
+import { useSettingsStore } from "../../stores/useSettingsStore";
 import { THEME } from "../../theme/theme";
 
 export function AudioEngineCard() {
-  const [flacEnabled, setFlacEnabled] = useState(true);
-  const [crossfadeEnabled, setCrossfadeEnabled] = useState(false);
-  const [eqPreset, setEqPreset] = useState<"acustico" | "vinilo" | "calido" | "plano">("vinilo");
+  const flacEnabled = useSettingsStore((s) => s.flacEnabled);
+  const crossfadeEnabled = useSettingsStore((s) => s.crossfadeEnabled);
+  const eqPreset = useSettingsStore((s) => s.eqPreset);
+  const setFlacEnabled = useSettingsStore((s) => s.setFlacEnabled);
+  const setCrossfadeEnabled = useSettingsStore((s) => s.setCrossfadeEnabled);
+  const setEqPreset = useSettingsStore((s) => s.setEqPreset);
 
   return (
     <SettingsCard icon="graphic_eq" title="Audio Engine" badge="Hi-Fi">

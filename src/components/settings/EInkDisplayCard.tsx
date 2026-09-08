@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet } from "react-native";
 import { AppText } from "../ui/AppText";
 import { SettingsCard } from "./SettingsCard";
 import { Button } from "../shared/Button";
 import { Toggle } from "../shared/Toggle";
+import { useSettingsStore } from "../../stores/useSettingsStore";
 import { THEME } from "../../theme/theme";
 
 export function EInkDisplayCard() {
-  const [intensity, setIntensity] = useState<"bajo" | "medio" | "alto">("medio");
-  const [darkInk, setDarkInk] = useState(false);
-  const [fontStyle, setFontStyle] = useState<"clasico" | "negrita">("negrita");
+  const intensity = useSettingsStore((s) => s.paperIntensity);
+  const darkInk = useSettingsStore((s) => s.darkInk);
+  const fontStyle = useSettingsStore((s) => s.fontStyle);
+  const setIntensity = useSettingsStore((s) => s.setPaperIntensity);
+  const setDarkInk = useSettingsStore((s) => s.setDarkInk);
+  const setFontStyle = useSettingsStore((s) => s.setFontStyle);
 
   return (
     <SettingsCard icon="texture" title="E-Ink Display" badge="Paper-Sim">

@@ -5,18 +5,20 @@ import {
   useFonts,
   IndieFlower_400Regular,
 } from "@expo-google-fonts/indie-flower";
-import { Caveat_400Regular } from "@expo-google-fonts/caveat";
+import { Caveat_400Regular, Caveat_700Bold } from "@expo-google-fonts/caveat";
 import { ShadowsIntoLight_400Regular } from "@expo-google-fonts/shadows-into-light";
 import { ErrorBoundary } from "../components/ErrorBoundary";
 import { useTrackPersistence } from "../hooks/useTrackPersistence";
 import { useTrackPlayerInit } from "../hooks/useTrackPlayerInit";
 import { LoadingOverlay } from "../components/ui/LoadingOverlay";
 import { ToastContainer } from "../components/ui/ToastContainer";
+import { PaperTexture } from "../components/ui/PaperTexture";
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
     IndieFlower_400Regular,
     Caveat_400Regular,
+    Caveat_700Bold,
     ShadowsIntoLight_400Regular,
   });
 
@@ -37,6 +39,9 @@ export default function RootLayout() {
     <ErrorBoundary>
       {/* Global notifications - only outside modals */}
       {!isModalRoute && <ToastContainer />}
+
+      {/* Paper texture overlay */}
+      <PaperTexture />
 
       {/* Global loading overlay */}
       <LoadingOverlay />

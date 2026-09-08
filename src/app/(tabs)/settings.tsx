@@ -1,8 +1,11 @@
 import React from "react";
-import { View, ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { THEME } from "../../theme/theme";
 import { AppText } from "../../components/ui/AppText";
 import { FontSelector } from "../../components/settings/FontSelector";
+import { EInkDisplayCard } from "../../components/settings/EInkDisplayCard";
+import { AudioEngineCard } from "../../components/settings/AudioEngineCard";
+import { AboutCard } from "../../components/settings/AboutCard";
 
 export default function SettingsScreen() {
   return (
@@ -10,12 +13,22 @@ export default function SettingsScreen() {
       style={styles.container}
       contentContainerStyle={styles.content}
     >
-      <AppText style={styles.title}>Settings</AppText>
+      <AppText style={styles.title}>Preferences & System</AppText>
+      <AppText style={styles.subtitle}>
+        Customize your tactile listening experience and physical hardware
+        simulation.
+      </AppText>
 
-      <View style={styles.section}>
-        <AppText style={styles.sectionTitle}>Font</AppText>
-        <FontSelector />
-      </View>
+      <AppText style={styles.sectionLabel}>Typography</AppText>
+      <FontSelector />
+
+      <AppText style={styles.sectionLabel}>Display</AppText>
+      <EInkDisplayCard />
+
+      <AppText style={styles.sectionLabel}>Audio</AppText>
+      <AudioEngineCard />
+
+      <AboutCard />
     </ScrollView>
   );
 }
@@ -26,24 +39,27 @@ const styles = StyleSheet.create({
     backgroundColor: THEME.colors.background,
   },
   content: {
-    padding: THEME.spacing.marginPage,
+    padding: THEME.spacing.gutterMd,
     paddingTop: 60,
+    paddingBottom: 100,
+    gap: 16,
   },
   title: {
     fontSize: THEME.fonts.sizes.xxl,
-    fontWeight: '700',
+    fontWeight: "600",
     color: THEME.colors.onSurface,
-    marginBottom: THEME.spacing.lg,
   },
-  section: {
-    marginBottom: THEME.spacing.xl,
+  subtitle: {
+    fontSize: THEME.fonts.sizes.md,
+    color: THEME.colors.onSurfaceVariant,
+    marginBottom: 8,
   },
-  sectionTitle: {
+  sectionLabel: {
     fontSize: THEME.fonts.sizes.sm,
-    fontWeight: '500',
+    fontWeight: "500",
     color: THEME.colors.onSurfaceVariant,
     textTransform: "uppercase",
     letterSpacing: 0.05,
-    marginBottom: THEME.spacing.xs,
+    marginTop: 8,
   },
 });
