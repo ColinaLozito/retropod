@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import { AppText } from "../ui/AppText";
-import { useFontStore, FontOption } from "../../stores/useFontStore";
+import { useFontStore, FontOption, FONT_MAP } from "../../stores/useFontStore";
 import { THEME } from "../../theme/theme";
 
 const FONT_OPTIONS: { id: FontOption; label: string }[] = [
@@ -25,7 +25,11 @@ export function FontSelector() {
             style={[styles.button, isActive && styles.activeButton]}
           >
             <AppText
-              style={[styles.label, isActive && styles.activeLabel]}
+              style={[
+                styles.label,
+                { fontFamily: FONT_MAP[option.id] },
+                isActive && styles.activeLabel,
+              ]}
             >
               {option.label}
             </AppText>
