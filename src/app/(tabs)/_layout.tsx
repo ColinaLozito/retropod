@@ -16,7 +16,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: THEME.colors.textInverse,
-        tabBarInactiveTintColor: THEME.colors.text.secondary,
+        tabBarInactiveTintColor: THEME.colors.onSurfaceVariant,
         tabBarStyle: {
           backgroundColor: THEME.colors.background,
           borderTopColor: THEME.colors.border,
@@ -24,7 +24,7 @@ export default function TabLayout() {
         headerStyle: {
           backgroundColor: THEME.colors.background,
         },
-        headerTintColor: THEME.colors.text.primary,
+        headerTintColor: THEME.colors.onSurface,
         tabBarShowLabel: false,
       }}
     >

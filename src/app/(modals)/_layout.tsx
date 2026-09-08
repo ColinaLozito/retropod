@@ -11,7 +11,7 @@ export default function ModalLayout() {
           headerStyle: {
             backgroundColor: THEME.colors.background,
           },
-          headerTintColor: THEME.colors.text.primary,
+          headerTintColor: THEME.colors.onSurface,
           presentation: "modal",
         }}
       >

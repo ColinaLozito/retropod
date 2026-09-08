@@ -26,24 +26,24 @@ export const styles = StyleSheet.create({
   errorTitle: {
     fontSize: THEME.fonts.sizes.xl,
     fontWeight: 'bold',
-    color: THEME.colors.text.primary,
+    color: THEME.colors.onSurface,
     marginBottom: THEME.spacing.sm,
   },
   errorMessage: {
     fontSize: THEME.fonts.sizes.md,
-    color: THEME.colors.text.secondary,
+    color: THEME.colors.onSurfaceVariant,
     textAlign: 'center',
     fontStyle: 'italic',
     marginBottom: THEME.spacing.lg,
   },
   retryButton: {
-    backgroundColor: THEME.colors.accent,
+    backgroundColor: THEME.colors.primary,
     paddingHorizontal: THEME.spacing.xl,
     paddingVertical: THEME.spacing.md,
     borderRadius: THEME.borderRadius.md,
   },
   retryText: {
-    color: THEME.colors.text.primary,
+    color: THEME.colors.onSurface,
     fontSize: THEME.fonts.sizes.md,
     fontWeight: 'bold',
   },

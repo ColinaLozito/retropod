@@ -12,7 +12,7 @@ export const LoadingOverlay = () => {
   return (
     <View style={styles.overlay} pointerEvents="auto">
       <View style={styles.container}>
-        <ActivityIndicator size="large" color={THEME.colors.accent} />
+        <ActivityIndicator size="large" color={THEME.colors.primary} />
         <Text style={styles.text}>{message}</Text>
       </View>
     </View>

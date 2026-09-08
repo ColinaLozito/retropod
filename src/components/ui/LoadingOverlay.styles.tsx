@@ -19,6 +19,6 @@ export const styles = StyleSheet.create({
   text: {
     marginTop: THEME.spacing.md,
     fontSize: THEME.fonts.sizes.md,
-    color: THEME.colors.text.primary,
+    color: THEME.colors.onSurface,
   },
 });

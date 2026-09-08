@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   header: {
     fontSize: THEME.fonts.sizes.xxl,
     fontWeight: 'bold',
-    color: THEME.colors.text.primary,
+    color: THEME.colors.onSurface,
     marginVertical: THEME.spacing.lg,
     textAlign: 'center',
   },
@@ -29,12 +29,12 @@ export const styles = StyleSheet.create({
   statValue: {
     fontSize: THEME.fonts.sizes.xl,
     fontWeight: 'bold',
-    color: THEME.colors.accent,
+    color: THEME.colors.primary,
     marginBottom: THEME.spacing.xs,
   },
   statLabel: {
     fontSize: THEME.fonts.sizes.sm,
-    color: THEME.colors.text.secondary,
+    color: THEME.colors.onSurfaceVariant,
   },
   progressCard: {
     marginBottom: THEME.spacing.md,
@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: THEME.fonts.sizes.lg,
     fontWeight: 'bold',
-    color: THEME.colors.text.primary,
+    color: THEME.colors.onSurface,
     marginBottom: THEME.spacing.md,
   },
   challengeItem: {
@@ -56,26 +56,26 @@ export const styles = StyleSheet.create({
   },
   challengeTitle: {
     fontSize: THEME.fonts.sizes.md,
-    color: THEME.colors.text.primary,
+    color: THEME.colors.onSurface,
   },
   challengeStatus: {
     fontSize: THEME.fonts.sizes.lg,
   },
   progressBar: {
     height: 6,
-    backgroundColor: THEME.colors.progressBackground,
+    backgroundColor: THEME.colors.surfaceContainerHigh,
     borderRadius: 3,
     overflow: 'hidden',
     marginBottom: THEME.spacing.xs,
   },
   progressFill: {
     height: '100%',
-    backgroundColor: THEME.colors.accent,
+    backgroundColor: THEME.colors.primary,
     borderRadius: 3,
   },
   progressText: {
     fontSize: THEME.fonts.sizes.sm,
-    color: THEME.colors.text.secondary,
+    color: THEME.colors.onSurfaceVariant,
   },
   achievementsCard: {
     marginBottom: THEME.spacing.xl,
@@ -91,26 +91,26 @@ export const styles = StyleSheet.create({
   },
   achievementText: {
     fontSize: THEME.fonts.sizes.md,
-    color: THEME.colors.text.primary,
+    color: THEME.colors.onSurface,
   },
   noAchievements: {
     fontSize: THEME.fonts.sizes.sm,
-    color: THEME.colors.text.tertiary,
+    color: THEME.colors.outline,
     textAlign: 'center',
     fontStyle: 'italic',
   },
   resetCard: {
     marginBottom: THEME.spacing.xl,
-    borderColor: THEME.colors.danger,
+    borderColor: THEME.colors.error,
     borderWidth: 1,
   },
   resetDescription: {
     fontSize: THEME.fonts.sizes.sm,
-    color: THEME.colors.text.secondary,
+    color: THEME.colors.onSurfaceVariant,
     marginBottom: THEME.spacing.md,
   },
   resetButton: {
-    backgroundColor: THEME.colors.danger,
+    backgroundColor: THEME.colors.error,
     padding: THEME.spacing.md,
     borderRadius: THEME.borderRadius.md,
     alignItems: 'center',

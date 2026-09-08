@@ -24,7 +24,12 @@ export function Toast({ toast, onDismiss }: ToastProps) {
   const translateY = useSharedValue(-100);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const bgColor = THEME.colors.toast[toast.type];
+  const bgColor =
+    toast.type === "success"
+      ? THEME.colors.primary
+      : toast.type === "warning"
+        ? THEME.colors.secondary
+        : THEME.colors.error;
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
