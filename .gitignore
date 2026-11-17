@@ -151,13 +151,9 @@ tsconfig.tsbuildinfo
 expo-env.d.ts
 /android
 /ios
-
-opencode.json
-.opencode/
 .yarn/
-AGENTS.md
-OPENCODE.md
-LOG_FILES/
-LOG_FILES/LOC.md
+
+# Local agent config (contains credentials)
+opencode.json
 
 

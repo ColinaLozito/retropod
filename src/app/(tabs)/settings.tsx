@@ -1,18 +1,23 @@
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { THEME } from "../../theme/theme";
 import { AppText } from "../../components/ui/AppText";
+import { HeaderBar } from "../../components/shared/HeaderBar";
 import { FontSelector } from "../../components/settings/FontSelector";
 import { EInkDisplayCard } from "../../components/settings/EInkDisplayCard";
 import { AudioEngineCard } from "../../components/settings/AudioEngineCard";
 import { AboutCard } from "../../components/settings/AboutCard";
 
 export default function SettingsScreen() {
+  const insets = useSafeAreaInsets();
+
   return (
     <ScrollView
       style={styles.container}
-      contentContainerStyle={styles.content}
+      contentContainerStyle={[styles.content, { paddingTop: (insets.top || 48) + 52 }]}
     >
+      <HeaderBar />
       <AppText style={styles.title}>Preferences & System</AppText>
       <AppText style={styles.subtitle}>
         Customize your tactile listening experience and physical hardware
@@ -40,8 +45,6 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: THEME.spacing.gutterMd,
-    paddingTop: 60,
-    paddingBottom: 100,
     gap: 16,
   },
   title: {

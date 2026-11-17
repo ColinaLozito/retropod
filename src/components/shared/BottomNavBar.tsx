@@ -1,19 +1,36 @@
 import React from "react";
-import { View, Pressable, StyleSheet } from "react-native";
+import { View, Pressable, Image, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppText } from "../ui/AppText";
 import { THEME } from "../../theme/theme";
 
 interface Tab {
   key: string;
   label: string;
-  icon: string;
+  icon: any;
 }
 
 const TABS: Tab[] = [
-  { key: "player", label: "Player", icon: "play_arrow" },
-  { key: "library", label: "Library", icon: "library_music" },
-  { key: "coverflow", label: "Browse", icon: "gallery_thumbnail" },
-  { key: "settings", label: "Settings", icon: "settings" },
+  {
+    key: "index",
+    label: "Player",
+    icon: require("../../../assets/icons/play_icon.png"),
+  },
+  {
+    key: "library",
+    label: "Library",
+    icon: require("../../../assets/icons/home_icon.png"),
+  },
+  {
+    key: "browse",
+    label: "Browse",
+    icon: require("../../../assets/icons/badge_icon.png"),
+  },
+  {
+    key: "settings",
+    label: "Settings",
+    icon: require("../../../assets/icons/profile_icon.png"),
+  },
 ];
 
 interface BottomNavBarProps {
@@ -22,62 +39,61 @@ interface BottomNavBarProps {
 }
 
 export function BottomNavBar({ activeTab, onTabPress }: BottomNavBarProps) {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.container}>
-      {TABS.map((tab) => {
-        const isActive = activeTab === tab.key;
-        return (
-          <Pressable
-            key={tab.key}
-            onPress={() => onTabPress(tab.key)}
-            style={[styles.tab, isActive && styles.tabActive]}
-          >
-            <AppText
-              style={[styles.icon, isActive && styles.iconActive]}
+    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
+      <View style={styles.bar}>
+        {TABS.map((tab) => {
+          const isActive = activeTab === tab.key;
+          return (
+            <Pressable
+              key={tab.key}
+              onPress={() => onTabPress(tab.key)}
+              style={[styles.tab, isActive && styles.tabActive]}
             >
-              {tab.icon}
-            </AppText>
-            <AppText
-              style={[styles.label, isActive && styles.labelActive]}
-            >
-              {tab.label}
-            </AppText>
-          </Pressable>
-        );
-      })}
+              <Image
+                source={tab.icon}
+                style={[styles.icon, isActive && styles.iconActive]}
+              />
+              <AppText style={[styles.label, isActive && styles.labelActive]}>
+                {tab.label}
+              </AppText>
+            </Pressable>
+          );
+        })}
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: 50,
-    flexDirection: "row",
-    height: 80,
-    paddingBottom: 20,
     backgroundColor: THEME.colors.surface,
     borderTopWidth: 1,
     borderTopColor: THEME.colors.outlineVariant,
+  },
+  bar: {
+    flexDirection: "row",
+    height: 56,
   },
   tab: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    gap: 2,
+    gap: 4,
   },
   tabActive: {
     backgroundColor: THEME.colors.primary,
   },
   icon: {
-    fontSize: 20,
-    color: THEME.colors.onSurfaceVariant,
+    width: 22,
+    height: 22,
+    resizeMode: "contain",
+    tintColor: THEME.colors.onSurfaceVariant,
   },
   iconActive: {
-    color: THEME.colors.onPrimary,
+    tintColor: THEME.colors.onPrimary,
   },
   label: {
     fontSize: THEME.fonts.sizes.xs,
@@ -87,5 +103,6 @@ const styles = StyleSheet.create({
   },
   labelActive: {
     color: THEME.colors.onPrimary,
+    fontWeight: "600",
   },
 });

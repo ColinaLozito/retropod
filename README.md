@@ -1,5 +1,126 @@
 # RetroPod
 
-Retro-inspired local music player for iOS.
+Retro-inspired local music player for iOS. iPod nostalgia meets modern React Native — plays local MP3/audio files from the device's `Documents` directory with zero external service dependencies.
 
-See [`docs/README.md`](docs/README.md) for architecture, setup, and project structure.
+## Architecture & Stack
+
+| Layer | Technology |
+|-------|-----------|
+| **Framework** | Expo SDK 54 / React Native 0.81 |
+| **Navigation** | Expo Router (file-based, `src/app/`) |
+| **Audio Engine** | `react-native-track-player` (background audio, lock screen controls) |
+| **State Management** | Zustand (persisted via AsyncStorage) |
+| **Local Files** | `expo-file-system` — targeting iOS `Documents/` for `Artist/Album/Track` trees |
+| **Package Manager** | npm |
+
+## Current State
+
+Clean native baseline established and verified on physical iOS devices. TypeScript compiles with zero errors. Ready for local file system integration and track indexing.
+
+## Features
+
+- **Background Audio** — music plays when app is minimized or screen is locked (iOS `audio` background mode)
+- **Lock Screen Controls** — play/pause/seek from iOS Lock Screen and Control Center
+- **Singleton Playback Service** — `PlaybackOrchestrator` manages all track lifecycle and queue logic
+- **Dynamic Font Switching** — three Google Fonts, user-selectable from Settings (see [FONTS.md](FONTS.md))
+- **Expo Router File Navigation** — tabs (`index`, `settings`) and modal screens
+
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) | MonoPod design system — color palette, typography, spacing, component library |
+| [FONTS.md](FONTS.md) | Fonts & font switcher — installation, architecture, usage |
+
+## Project Structure
+
+```
+src/
+├── app/                        # Expo Router screens
+│   ├── _layout.tsx             # Root layout (fonts, ErrorBoundary, TrackPlayer)
+│   ├── (tabs)/                 # Tab navigation
+│   │   ├── _layout.tsx         # Tabs config
+│   │   ├── index.tsx           # Home / Library
+│   │   └── settings.tsx        # Settings
+│   └── (modals)/
+│       └── _layout.tsx         # Modal layout
+├── components/
+│   ├── coverflow/              # iPod-style cover flow
+│   ├── library/                # List items (Artist, Album, SearchBar, etc.)
+│   ├── player/                 # ClickWheel, LcdScreenFrame, NowPlayingInfo, VinylArtwork
+│   ├── settings/               # FontSelector, AudioEngineCard, EInkDisplayCard, etc.
+│   ├── shared/                 # BottomNavBar, HeaderBar, ListItem, Toggle, etc.
+│   ├── ui/                     # AppText, LoadingOverlay, Toast, ToastContainer
+│   └── ErrorBoundary.tsx
+├── services/
+│   ├── PlaybackOrchestrator.ts  # Singleton playback lifecycle
+│   ├── audioService.ts          # TrackPlayer setup & helpers
+│   └── playbackService.ts       # Background playback service
+├── hooks/
+│   ├── useMusicPlayer.ts        # Thin glue between TrackPlayer & Orchestrator
+│   ├── useTrackPlayerInit.ts    # TrackPlayer initialization
+│   ├── useTrackPersistence.ts   # Background progress saving
+│   ├── usePlayerModal.ts        # Modal visibility state
+│   └── usePointsCounter.ts      # Points calculation
+├── stores/
+│   ├── musicStore.ts            # Track list & active challenge state
+│   ├── userStore.ts             # User progress & achievements
+│   ├── toastStore.ts            # Notification queue
+│   ├── loadingStore.ts          # Global loading overlay
+│   └── useFontStore.ts          # Font selection state
+├── theme/
+│   ├── theme.ts                 # Design tokens (monochrome e-ink palette)
+│   └── app/                     # Screen-specific styles
+├── types/                       # TypeScript interfaces
+├── constants/                   # Static config (icons)
+└── utils/                       # Helpers (toast, time formatting)
+```
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js** LTS (v18+)
+- **Xcode** (latest stable)
+- **CocoaPods** (`sudo gem install cocoapods`)
+- Physical iOS device recommended for background audio testing
+
+### Install & Run
+
+```bash
+npm install
+npx pod-install
+npx expo run:ios --device
+```
+
+### iOS Simulator
+
+```bash
+npx expo run:ios
+```
+
+### Metro Cache Reset
+
+```bash
+npx expo start -c
+```
+
+## Testing on a Physical Device
+
+Background audio and lock screen controls require a real device.
+
+**Option A — Terminal (fastest):**
+```bash
+npx expo run:ios --device
+```
+
+**Option B — Xcode Release Build:**
+1. Connect iPhone via USB
+2. Open `ios/` folder in Xcode (`.xcworkspace`)
+3. Select your Development Team under **Signing & Capabilities**
+4. Edit Scheme > Run > Build Config > **Release**
+5. Select your device and Run
+
+## License
+
+This project is private and confidential.

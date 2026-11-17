@@ -1,16 +1,20 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppText } from "../ui/AppText";
 import { THEME } from "../../theme/theme";
 
 export function HeaderBar() {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top || 48 }]}>
       <View style={styles.left}>
-        <View style={styles.logoMark}>
-          <AppText style={styles.logoIcon}>♫</AppText>
-        </View>
-        <AppText style={styles.logoText}>MonoPod</AppText>
+        <Image
+          source={require("../../../assets/icons/play_icon.png")}
+          style={styles.logoImage}
+        />
+        <AppText style={styles.logoText}>RetroPod</AppText>
       </View>
       <View style={styles.avatar}>
         <AppText style={styles.avatarIcon}>person</AppText>
@@ -26,29 +30,25 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 50,
-    height: 64,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: THEME.spacing.gutterMd,
-    paddingTop: 48,
+    paddingBottom: THEME.spacing.sm,
     backgroundColor: THEME.colors.surface,
-    // In RN, backdrop-blur is achieved via BlurView — simplified here
+    borderBottomWidth: 1,
+    borderBottomColor: THEME.colors.outlineVariant,
   },
   left: {
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
   },
-  logoMark: {
-    width: 32,
-    height: 32,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  logoIcon: {
-    fontSize: 20,
-    color: THEME.colors.onSurface,
+  logoImage: {
+    width: 28,
+    height: 28,
+    resizeMode: "contain",
+    tintColor: THEME.colors.onSurface,
   },
   logoText: {
     fontSize: THEME.fonts.sizes.xl,
